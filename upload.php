@@ -38,7 +38,7 @@
         
         <!-- 添加“确定”按钮 -->
         <div class="mt-4">
-            <button class="btn btn-primary" onclick="window.history.back();">确定</button>
+            <a class="btn btn-primary" href ="file_list.html">确定</a>
         </div>
     </div>
 

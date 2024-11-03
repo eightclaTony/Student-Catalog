@@ -1,4 +1,6 @@
 <?php
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Wed, 11 Jan 1984 05:00:00 GMT"); // 过期时间
 $directory = isset($_GET['dir']) ? rtrim($_GET['dir'], '/') : './'; // 获取目录参数
 
 // 检查是否要求返回 JSON 格式
