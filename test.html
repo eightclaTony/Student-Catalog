@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机引语</title>
+    <style>
+        #quoteDisplay {
+            cursor: pointer;
+            transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+            overflow: hidden; /* 防止内容在动画期间溢出 */
+            max-height: 100px; /* 根据需要设置最大高度 */
+        }
+
+        /* 隐藏状态，用于动画切换 */
+        #quoteDisplay.hidden {
+            opacity: 0;
+            height: 0; /* 可以根据需要设置为其他值 */
+        }
+    </style>
+    <script src="js/quotes.js"> </script>
+</head>
+<body>
+    <h1>随机引语</h1>
+    <p id="quoteDisplay" onclick="getRandomQuote()" style="cursor: pointer;">点击这里获取新的引语</p> <!-- 点击文字获取新引语 -->
+</body>
+</html>
