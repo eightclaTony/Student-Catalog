@@ -1,19 +1,26 @@
 const quotes = [
     "逆天说法很有说法",
     "我们脊蛙是这样的",
-    "joker",
+    "人不行别怪路不平",
     "朝笑",
+    "德育是善行和善意的闭环————LZB",
+    "逆天"
 ];
 
-let lastQuoteIndex = -1; // 用于存储上一次引语的索引
+let lastQuotes = []; // 用于存储上一次引语的索引
 
 function getRandomQuote() {
+    if (lastQuotes.length === quotes.length) {
+        lastQuotes = []; // 如果所有引语都已显示过，重置
+    }
+
     let randomIndex;
     do {
         randomIndex = Math.floor(Math.random() * quotes.length);
-    } while (randomIndex === lastQuoteIndex); // 确保新索引不同于上一个
+    } while (lastQuotes.includes(randomIndex)); // 确保新索引未在以前的索引中
 
-    lastQuoteIndex = randomIndex; // 更新上一个引语的索引
+    lastQuotes.push(randomIndex); // 更新已显示过的索引
+
     const quoteDisplay = document.getElementById('quoteDisplay');
 
     // 临时添加隐藏类来触发过渡

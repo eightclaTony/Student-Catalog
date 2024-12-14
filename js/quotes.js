@@ -13,8 +13,18 @@ const quotes = [
     "In the middle of every difficulty lies opportunity. - Albert Einstein",
     "All that we are is the result of what we have thought. The mind is everything. What we think we become. - Buddha",
     "The greatest way to live with honor in this world is to be what we pretend to be. - Socrates",
-    "Dream big and dare to fail. - Norman Vincent Peale"
-    // 可以继续添加其他引语
+    "Dream big and dare to fail. - Norman Vincent Peale",
+    "The best way to predict your future is to create it. - Peter Drucker",
+    "You miss 100% of the shots you don't take. - Wayne Gretzky",
+    "It does not matter how slowly you go as long as you do not stop. - Confucius",
+    "Everything you’ve ever wanted is on the other side of fear. - George Addair",
+    "The only way to do great work is to love what you do. - Steve Jobs",
+    "Your time is limited, don’t waste it living someone else’s life. - Steve Jobs",
+    "Act as if what you do makes a difference. It does. - William James",
+    "Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
+    "Don’t count the days, make the days count. - Muhammad Ali",
+    "What lies behind us and what lies before us are tiny matters compared to what lies within us. - Ralph Waldo Emerson",
+    "Believe you can and you’re halfway there. - Steve Jobs",
 ];
 
 function getRandomQuote() {

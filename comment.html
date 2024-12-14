@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言簿</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        #comments {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+        .comment {
+            display: flex; /* 使用 flexbox 布局 */
+            justify-content: space-between; /* 让内容和时间分开 */
+            align-items: center; /* 垂直居中 */
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #e2e2e2;
+            border-radius: 5px;
+        }
+        .comment-text {
+            flex: 1; /* 使留言内容占据所有剩余空间 */
+            margin-right: 10px; /* 留一些间距与时间区分 */
+        }
+        .comment-time {
+            font-size: 0.9em;
+            color: #777; /* 设置时间的字体颜色为灰色 */
+        }
+        #inputArea {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        #inputArea textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+    </head>
+<body>
+    <h1>欢迎来到留言簿</h1>
+    <div id="comments">
+        <!-- 留言将会显示在这里 -->
+    </div>
+    <div id="inputArea">
+        <textarea id="commentInput" placeholder="留下你的留言..."></textarea>
+        <button onclick="addComment()">发送留言</button>
+    </div>
+
+    <script>
+        // 页面加载时，读取并显示已有的留言
+        window.onload = function() {
+            fetchComments();
+        };
+
+        // 添加留言的函数
+        function addComment() {
+            var commentInput = document.getElementById('commentInput');
+            var commentText = commentInput.value.trim();
+
+            if(commentText) {
+                fetch('add-comment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'comment=' + encodeURIComponent(commentText)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if(data.success) {
+                        commentInput.value = ''; // 清空输入框
+                        fetchComments(); // 更新留言显示
+                    } else {
+                        alert('留言发送失败，请重试。');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('留言发送失败，请重试。');
+                });
+            } else {
+                alert('留言内容不能为空！');
+            }
+        }
+
+        // 显示留言的函数
+        function fetchComments() {
+            fetch('get-comments.php')
+                .then(response => response.json())
+                .then(data => {
+                    var commentsDiv = document.getElementById('comments');
+                    commentsDiv.innerHTML = ''; // 清空现有留言
+
+                    if (data.comments.length === 0) {
+                        commentsDiv.innerHTML = '<p>暂无留言。</p>';
+                    } else {
+                        data.comments.forEach(function(comment) {
+                            var commentElement = document.createElement('div');
+                            commentElement.className = 'comment';
+
+                            // 创建留言内容和时间
+                            var commentContent = document.createElement('p');
+                            commentContent.className = 'comment-text';
+                            commentContent.textContent = comment.comment;
+
+                            var commentTime = document.createElement('small');
+                            commentTime.className = 'comment-time';
+                            commentTime.textContent = formatTimestamp(comment.timestamp); // 格式化时间戳
+
+                            // 将内容和时间加到留言元素中
+                            commentElement.appendChild(commentContent);
+                            commentElement.appendChild(commentTime);
+                            commentsDiv.appendChild(commentElement);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // 时间戳格式化函数
+        function formatTimestamp(timestamp) {
+            var date = new Date(timestamp);
+            var year = date.getFullYear();
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var day = String(date.getDate()).padStart(2, '0');
+            var hours = String(date.getHours()).padStart(2, '0');
+            var minutes = String(date.getMinutes()).padStart(2, '0');
+            var seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+
+    </script>
+</body>
+</html>
