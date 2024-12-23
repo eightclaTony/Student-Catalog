@@ -14,6 +14,8 @@ Currently, the student directory has features for file upload, download, and vie
 
 For any ideas or suggestions, feel free to reach out to me directly or contact me via email at classicmcnet@outlook.com
 
+
+
 教师目录，一个专为教师设计的特殊文件夹，它依托SMB技术构建于校园网之上，旨在为教师群体提供高效便捷的文件传输服务。每位教师均拥有独立的账号与密码，凭借正确的登录信息，即可轻松访问个人文件及所属科目的共享资源。此外，还曾设有临时目录，供教师紧急存放文件之用（但该功能现已移除）。
 
 然而，在这所广阔的校园里，学生群体同样需要文件存储与传输的便利。遗憾的是，学校目前并未向学生提供专门的文件传输服务，这给学生们在校内的文件管理带来了诸多不便。无论是易丢失的U盘，还是因老化、接触不良而频出问题的通用串行总线，都严重制约了学生在校内文件传输的效率和便捷性。
