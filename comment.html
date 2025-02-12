@@ -6,48 +6,134 @@
     <title>留言簿</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+            overflow-y: scroll; /* 启用垂直滚动 */
+            padding-bottom: 185px; /* 添加底部留白 */
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2;
             padding: 20px;
-            background-color: #f4f4f9;
+            margin: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         #comments {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
             background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .comment {
-            display: flex; /* 使用 flexbox 布局 */
-            justify-content: space-between; /* 让内容和时间分开 */
-            align-items: center; /* 垂直居中 */
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #e2e2e2;
-            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            background-color: #fefefe;
+        }
+        .comment:last-child {
+            border-bottom: none;
         }
         .comment-text {
-            flex: 1; /* 使留言内容占据所有剩余空间 */
-            margin-right: 10px; /* 留一些间距与时间区分 */
+            flex: 1;
+            margin-right: 10px;
+            font-size: 1em;
+            color: #555;
+            line-height: 1.6em; /* 每行的高度 */
+            max-height: 4.8em; /* 限制为3行显示，3 × line-height */
+            overflow: hidden; /* 超出内容隐藏 */
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+            display: -webkit-box;
+            -webkit-box-orient: vertical; /* 设置多行省略号方向 */
+            word-wrap: break-word; /* 长单词换行 */
+            cursor: pointer; /* 鼠标悬停提示可交互 */
+            transition: color 0.3s; /* 鼠标悬停时平滑过渡 */
+        }
+        .comment-text:hover {
+            color: #4a90e2; /* 鼠标悬停改变字体颜色 */
         }
         .comment-time {
-            font-size: 0.9em;
-            color: #777; /* 设置时间的字体颜色为灰色 */
+            font-size: 0.85em;
+            color: #aaa;
         }
         #inputArea {
-            background-color: #fff;
-            padding: 10px;
-            border: 1px solid #ccc;
+        position: fixed; /* 固定定位 */
+        bottom: 20px; /* 距离底部20px，留出一些空隙 */
+        left: 50%; /* 水平居中 */
+        transform: translateX(-50%); /* 将元素本身的宽度中心对齐 */
+        width: 90%; /* 设置宽度为页面宽度的90% */
+        max-width: 600px; /* 限制最大宽度为600px */
+        padding: 15px;
+        background-color: #fff; /* 白色背景 */
+        border: 1px solid #ddd; /* 边框 */
+        border-radius: 10px; /* 圆角边框 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+        z-index: 1000; /* 确保显示在最上方 */
+    }
+    #inputArea textarea {
+        width: 100%;
+        height: 80px; /* 文本框高度 */
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        resize: none; /* 禁止调整大小 */
+        outline: none;
+        box-sizing: border-box; /* 包括内边距和边框 */
+    }
+    #inputArea textarea:focus {
+        border-color: #4a90e2; /* 聚焦时边框颜色 */
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* 聚焦时阴影 */
+    }
+    #inputArea button {
+        margin-top: 10px; /* 按钮与文本框之间的间距 */
+        width: 100%; /* 按钮宽度 */
+        padding: 10px;
+        font-size: 1em;
+        color: #fff;
+        background-color: #4a90e2;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    #inputArea button:hover {
+        background-color: #357abd; /* 悬停时按钮变色 */
+    }
+        #inputArea textarea::placeholder {
+            color: #aaa; /* 占位符颜色更柔和 */
+            font-style: italic; /* 添加斜体效果 */
         }
-        #inputArea textarea {
+        #inputArea button {
             width: 100%;
-            height: 100px;
-            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #inputArea button:hover {
+            background-color: #357abd;
+        }
+        p {
+            color: #666;
         }
     </style>
+    
     </head>
 <body>
-    <h1>欢迎来到留言簿</h1>
+    <h1>欢迎来到留言区</h1>
     <div id="comments">
         <!-- 留言将会显示在这里 -->
     </div>
@@ -141,6 +227,20 @@
             return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         }
 
+        document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('comment-text')) {
+            const isCollapsed = e.target.style.webkitLineClamp; // 检测当前状态
+            if (isCollapsed) {
+                e.target.style.webkitLineClamp = ''; // 取消行限制
+                e.target.style.maxHeight = 'none'; // 设置为不限制高度
+                e.target.style.cursor = 'default'; // 展开后移除交互提示
+            } else {
+                e.target.style.webkitLineClamp = '3'; // 恢复行限制
+                e.target.style.maxHeight = '4.8em';
+                e.target.style.cursor = 'pointer';
+            }
+        }
+    });
 
     </script>
 </body>
