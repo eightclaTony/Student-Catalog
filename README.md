@@ -1,59 +1,37 @@
-# 学生目录平台
+The Teacher Directory is a special folder designed specifically for teachers. It is built on the school network using SMB (Server Message Block) technology, aiming to provide efficient and convenient file transfer services for the teaching staff. Each teacher has an independent account and password, allowing easy access to personal files and shared resources related to their subjects with the correct login information. Additionally, there used to be a temporary directory for urgent file storage for teachers (although this feature has now been removed).
 
-欢迎来到学生目录平台，一个专为学生设计的文件下载和资源共享平台。本自述文件将为您提供关于该平台的详细信息，包括其功能、如何使用以及如何为平台做出贡献。
+However, in this vast campus, the student community also requires the convenience of file storage and transfer. Unfortunately, the school currently does not provide dedicated file transfer services for students, which has caused numerous inconveniences in file management for students on campus. Whether it's the easy-to-lose USB drives or the inefficiency and inconvenience caused by aging or poorly functioning Universal Serial Bus (USB) connections, both have severely restricted the efficiency and convenience of file transfer for students on campus.
 
-## 功能概览
+Perhaps due to oversight by the school, or due to limitations stemming from technological, economic, or other factors, the absence of a student directory has become an urgent issue in need of resolution. It is in light of these circumstances that we are introducing the "Student Directory Plan."
 
-### 首页 (Home)
-- **网站标题**：学生目录
+Given the far larger number of students compared to teachers, the planning and construction of the student directory naturally require more thorough and outstanding efforts. After in-depth comparison and analysis, I have chosen a website as the best platform for the student directory. Compared to SMB services, websites are highly praised for their outstanding compatibility, smoothness, aesthetics, and flexibility.
 
-### 服务 (Services)
-- **共享下载**：介绍共享目录的功能，包括安全、高效、便捷的文件分享。
-- **功能完善**：提示用户该功能仍在不断完善中，并鼓励提供反馈。
+Utilizing Apache technology, I have successfully set up a server on the classroom computer and configured the port to 80. Therefore, by simply accessing the IP address of my class (10.88.202.54), you can easily access the student directory.
 
-### 教程 (Gallery)
-- **教程列表**：提供各种教程，如“关于如何正确删除powershadow的研究”和“Web”相关内容。
-- **查看教程**：用户可以直接点击教程链接查看详细内容。
+As this plan did not receive direct support from the school, every step has been filled with challenges, and all the website code has been independently completed by me. I sincerely welcome valuable suggestions from everyone to help me continually improve and optimize the student directory.
 
-### 关于 (About)
-- **关于我们**：介绍平台的功能、团队成员、联系方式等。
-- **加入我们**：提供加入平台的途径，包括报名参加活动、参与开发、提供建议等。
-- **版权信息**：显示版权和设计信息。
+Currently, the student directory has features for file upload, download, and viewing tutorials, with more functions continuously being enhanced. Stay tuned for more updates!
 
-## 使用方法
+For any ideas or suggestions, feel free to reach out to me directly or contact me via email at classicmcnet@outlook.com
 
-### 浏览和下载文件
-1. 访问 [学生目录平台](#)。
-2. 点击“Let's Begin”按钮进入服务页面。
-3. 在共享目录中查找所需文件，点击“共享目录”链接进行下载。
 
-### 查看教程
-1. 在教程部分，点击感兴趣的教程卡片。
-2. 点击“查看教程”按钮，查看详细教程内容。
 
-### 提供反馈
-- 如果您有任何建议或问题，请通过平台提供的联系方式与我们联系。
+教师目录，一个专为教师设计的特殊文件夹，它依托SMB技术构建于校园网之上，旨在为教师群体提供高效便捷的文件传输服务。每位教师均拥有独立的账号与密码，凭借正确的登录信息，即可轻松访问个人文件及所属科目的共享资源。此外，还曾设有临时目录，供教师紧急存放文件之用（但该功能现已移除）。
 
-## 技术栈
+然而，在这所广阔的校园里，学生群体同样需要文件存储与传输的便利。遗憾的是，学校目前并未向学生提供专门的文件传输服务，这给学生们在校内的文件管理带来了诸多不便。无论是易丢失的U盘，还是因老化、接触不良而频出问题的通用串行总线，都严重制约了学生在校内文件传输的效率和便捷性。
 
-### 前端
-- **HTML5**：用于构建网页结构。
-- **CSS3**：用于样式设计，包括使用 Google Web Font、Font Awesome、Bootstrap 和 Magnific Popup。
-- **JavaScript**：用于实现交互功能，包括 jQuery、Isotope、imagesLoaded 和 Magnific Popup 插件。
+或许是由于校方的疏忽，或是受技术、经济等因素的限制，学生目录的缺失成为了亟待解决的问题。正是在这样的背景下，我们推出了“学生目录计划”。
 
-### 后端
-- **PHP**：用于处理教程文件的展示。
+鉴于学生人数远超教师，学生目录的规划与建设自然应更加周全与出色。经过深入比较与分析，我选择了网站作为学生目录的最佳载体，相较于SMB服务，网站以其卓越的兼容性、流畅性、美观性和灵活性而备受赞誉。
 
-## 贡献
+借助Apache技术，我在班级电脑上成功搭建了一台服务器，并将端口设置为80。因此，只需访问我所在班级的IP地址（10.88.202.54），即可轻松访问学生目录。
 
-我们欢迎任何形式的贡献，包括代码改进、教程内容的添加或更新、以及任何有助于提升用户体验的建议。如果您有兴趣参与开发或提供反馈，请通过以下方式联系我们：
+由于该计划未获得学校的直接支持，所以每一步都充满了挑战，网站的所有代码均由我一人独立完成。我诚挚地欢迎各位提出宝贵建议，以帮助我不断完善和优化学生目录。
 
-- **GitHub**：[Yuebi](https://github.com/eightclaTony/Student-Catalog)
-- **电子邮件**：classicmcnet@example.com
+目前，学生目录已具备文件上传、下载及教程查看等功能，更多功能正在不断完善中。敬请期待！
 
-## 版权信息
+如有任何建议或疑问，欢迎与我联系，或通过邮件classicmcnet@outlook.com与我取得联系。
 
-- **版权所有**：© 2024 Yuebi
-- **设计**：Yuebi
+Yuebi
 
-请遵守相关法律法规，尊重知识产权，合理使用本平台资源。感谢您的支持和参与！
+2024.10.31
