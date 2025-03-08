@@ -219,7 +219,98 @@
         }
 
     </style>
-  
+    <style>
+        :root {
+            --green-color: #4CAF50; 
+            --yellow-color: #FFEB3B; 
+            --red-color: #F44336; 
+            --circle-size: 30px; 
+            --circle-margin: 20px; 
+            --transition-duration: 0.3s; 
+        }
+
+        .circle {
+            width: var(--circle-size);
+            height: var(--circle-size);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: var(--circle-margin) auto;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration); 
+            cursor: pointer; 
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltip-content {
+            position: absolute;
+            bottom: -333%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            min-width: 159px;
+            text-align: center;
+        }
+        .tooltip:hover .tooltip-content {
+            opacity: 1;
+        }
+        /* 箭头 */
+        .tooltip .tooltip-arrow {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid rgba(0, 0, 0, 0.8);
+        }
+
+        .circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+        }
+
+        .green {
+            background-color: var(--green-color);
+        }
+
+        .yellow {
+            background-color: var(--yellow-color);
+        }
+
+        .red {
+            background-color: var(--red-color);
+        }
+    </style>
+    <?php
+        function get_session_count($file_path = 'session.txt') {
+            if (!file_exists($file_path)) {
+                return 0;
+            }
+            $content = file_get_contents($file_path);
+            if (preg_match('/会话数\s*\|\s*(\d+)/', $content, $matches)) {
+                return (int)$matches[1] - 1;
+            }
+            return 0;
+        }
+        $session_count = get_session_count();
+?>
 </head>
 <body>
     <div class="container">
@@ -245,6 +336,29 @@
                 <button class="nav-button" onclick="navigateToTools()">更多工具</button>
                 <button class="nav-button" onclick="navigateToAbout()">关于</button>
 
+                <div class="circle 
+                    <?php 
+                        if ($session_count < 4) {
+                            echo 'green';
+                        } elseif ($session_count >= 5 && $session_count <= 8) {
+                            echo 'yellow';
+                        } else {
+                            echo 'red';
+                        }
+                    ?> tooltip">
+                    <span class="tooltip-content">
+                        当前会话数：<strong><?php echo $session_count; ?></strong>
+                        <?php
+                            if ($session_count < 5) {
+                                echo "<br>会话数较少，VPN质量较为稳定";
+                            } elseif ($session_count >= 5 && $session_count <= 8) {
+                                echo "<br>会话数较多，VPN质量可能不稳定";
+                            } else {
+                                echo "<br>会话数较多，VPN速度可能较慢";
+                            }
+                        ?>
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -256,7 +370,7 @@
                 <div class="tutorial-card">
                     <h3>关于如何正确删除powershadow的研究</h3>
                     <p>介绍了如何使用正确的方法删除powershadow来避免每次电脑重启后恢复原本的文件，详细解释了各种删除方式的原理，并给出了各种删除方法的优劣对比。</p>
-                    <a href="tutorial/show.php?tutorial/powershadow.md" class="btn btn-outline-primary" onclick="checkPassword()">查看教程</a>
+                    <a href="tutorial/show.php?tutorial/powershadow.md" class="btn btn-outline-primary"">查看教程</a>
 
                 </div>
                 <div class="tutorial-card">
@@ -268,7 +382,8 @@
                 <div class="tutorial-card">
                     <h3>教师目录密码</h3>
                     <p>教师目录密码登记</p>
-                    <a href="####" class="btn btn-outline-primary"">查看教程</a>
+                    <a class="btn btn-outline-primary" onclick="checkPassword('tutorial/show.php?file=password.md')">查看教程</a>
+
 
                 </div>
                 <div class="tutorial-card">
@@ -520,7 +635,6 @@
     }
 </style>
 
-<!-- 在script标签内添加以下新功能 -->
 <script>
     // 页面加载动画
     document.addEventListener('DOMContentLoaded', () => {
@@ -568,6 +682,20 @@
     });
     
 </script>
+<script>
+    function checkPassword(targetUrl) {
+        const correctPassword = "qwe";
+        const userPassword = prompt("请输入密码以查看教程:"); 
+        
+        if (userPassword === correctPassword) {
+            return location.href=(targetUrl); 
+        } else {
+            alert("密码错误，请重试。");
+            return false;
+        }
+    }
+</script>
+
 
 </body>
 </html>

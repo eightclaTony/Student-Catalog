@@ -1,0 +1,38 @@
+vpncmd 命令 - SoftEther VPN 命令行管理工具
+SoftEther VPN 命令行管理工具 (vpncmd 命令)
+Version 4.43 Build 9799   (Simplified_Chinese)
+Compiled 2023/08/31 10:50:49 by buildsan at crosswin with OpenSSL 3.0.9
+Copyright (c) 2012-2023 SoftEther VPN Project. All Rights Reserved.
+
+与服务器 "localhost" 的连接已建立 (端口 443)。
+
+您在 VPN Server 上有虚拟 HUB "vpn" 的管理员权限。
+
+VPN Server/vpn>statusget
+StatusGet 命令 - 获取虚拟 HUB 的当前状况
+项目          |价值
+--------------+--------------------
+虚拟 HUB 名称 |VPN
+状态          |在线
+类型          |独立
+SecureNAT 机能|有效
+会话数        |4
+访问列表      |0
+用户数        |2
+组数          |0
+MAC 表数      |1
+IP 表数       |1
+登录次数      |782
+最后登录时间  |2025-03-08 12:57:43
+最后通信时间  |2025-03-08 17:11:47
+创建日期      |2024-12-28 11:04:48
+发送单播数据包|199,062,696 数据包
+发送单播总量  |152,856,420,769 字节
+发送广播数据包|1,727,800 数据包
+发送广播总量  |124,330,985 字节
+接收单播数据包|200,510,830 数据包
+接收单播总量  |153,574,876,356 字节
+接收广播数据包|2,954,429 数据包
+接收广播总量  |207,078,259 字节
+命令成功完成。
+
