@@ -35,7 +35,7 @@
         #home-page {
             display: flex;
             width: 100%;
-            padding: 40px;
+            padding: 140px;
             transition: transform 0.5s ease;
         }
 
@@ -217,6 +217,17 @@
                 opacity: 0;
             }
         }
+        .bottom-image {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+            object-fit: cover;
+            min-width: 100%;
+            min-height: 100%;
+            opacity: 0.5;
+        }
 
     </style>
     <style>
@@ -299,7 +310,7 @@
         }
     </style>
     <?php
-        function get_session_count($file_path = 'session.txt') {
+        function get_session_count($file_path = 'status\session.txt') {
             if (!file_exists($file_path)) {
                 return 0;
             }
@@ -318,47 +329,60 @@
         <div id="home-page">
             <div class="intro-section">
                 <h1>学生目录</h1>
+                <br>
                 <p style="line-height: 1.6;">
                     欢迎来到 学生目录 2.0！
                 </p>
+                <br>
+                <br>
                 <ul style="list-style: none;">
                     <li style="padding: 10px 0;">✔ 校园网络接入服务</li>
                     <li style="padding: 10px 0;">✔ 学生共享文件传输服务</li>
-                    <li style="padding: 10px 0;">✔ 其他技术支持</li>
-                    <li style="padding: 10px 0;"><a style="color: #00ff62;" href="index copy.html">前往旧版</a></li>
+                    <li style="padding: 10px 0;">✔ 其他技术支持<br><br></li> 
+                    <li style="padding: 10px 0;">前往 <a style="color:rgb(0, 189, 73);" href="readme.html">学生目录使用说明</a></li>
+                    <li style="padding: 10px 0;">前往 <a style="color:rgb(0, 189, 73);" href="index copy.html">旧版</a></li>
                 </ul>
               
             </div>
+
+            <div class="background-image">
+                <img src=" "class="bottom-image">
+            </div>
+
 
             <div class="button-section">
                 <button class="nav-button" onclick="navigateToTutorials()">教程</button>
                 <button class="nav-button" onclick='location.href=("http://10.88.202.71:5244")'>共享目录</button>
                 <button class="nav-button" onclick="navigateToTools()">更多工具</button>
                 <button class="nav-button" onclick="navigateToAbout()">关于</button>
-
-                <div class="circle 
-                    <?php 
-                        if ($session_count < 4) {
-                            echo 'green';
-                        } elseif ($session_count >= 5 && $session_count <= 8) {
-                            echo 'yellow';
-                        } else {
-                            echo 'red';
-                        }
-                    ?> tooltip">
-                    <span class="tooltip-content">
-                        当前会话数：<strong><?php echo $session_count; ?></strong>
-                        <?php
-                            if ($session_count < 5) {
-                                echo "<br>会话数较少，VPN质量较为稳定";
+                <div style="display: flex; justify-content: center; align-items: center; text-align: center; margin: 0 auto;">
+                    <p style="margin: 0;">status:</p>
+                    <div class="circle 
+                        <?php 
+                            if ($session_count < 4) {
+                                echo 'green';
                             } elseif ($session_count >= 5 && $session_count <= 8) {
-                                echo "<br>会话数较多，VPN质量可能不稳定";
+                                echo 'yellow';
                             } else {
-                                echo "<br>会话数较多，VPN速度可能较慢";
+                                echo 'red';
                             }
-                        ?>
-                    </span>
+                        ?> tooltip" style="margin-left: 10px;">
+                        <span class="tooltip-content">
+                            当前会话数：<strong><?php echo $session_count; ?></strong>
+                            <?php
+                                if ($session_count < 5) {
+                                    echo "<br>会话数较少，VPN质量较为稳定";
+                                } elseif ($session_count >= 5 && $session_count <= 8) {
+                                    echo "<br>会话数较多，VPN质量可能不稳定";
+                                } else {
+                                    echo "<br>会话数较多，VPN速度可能较慢";
+                                }
+                            ?>
+                        </span>
+                    </div>
                 </div>
+
+                
             </div>
         </div>
 
@@ -387,8 +411,8 @@
 
                 </div>
                 <div class="tutorial-card">
-                    <h3>怎么在学校访问互联网</h3>
-                    <p>手机在学校访问互联网的新方法</p>
+                    <h3>教学楼中的WiFi密码登记</h3>
+                    <p>登记了教学楼中的WiFi密码</p>
                     <a href="tutorial/show.php?file=web2.md" class="btn btn-outline-primary">查看教程</a> <!-- 使用 outline按钮样式 -->
                 </div>
             </div>
@@ -397,17 +421,26 @@
         <!-- 关于页 -->
         <div id="about-page">
             <button class="back-button" onclick="goBack()">返回首页</button>
-            <h2>关于</h2>
+            <h2>关于       </h2>
+            <br>
             <div class="tutorial-grid" >
                 <div style="border-radius: 10px;">
-                    <p style="color: #00ff62;">教师目录，一个专为教师设计的特殊文件夹，它依托SMB技术构建于校园网之上，旨在为教师群体提供高效便捷的文件传输服务。每位教师均拥有独立的账号与密码，凭借正确的登录信息，即可轻松访问个人文件及所属科目的共享资源。此外，还曾设有临时目录，供教师紧急存放文件之用（但该功能现已移除）。</p>
-                    <p style="color: #00ff62;">然而，在这所广阔的校园里，学生群体同样需要文件存储与传输的便利。遗憾的是，学校目前并未向学生提供专门的文件传输服务，这给学生们在校内的文件管理带来了诸多不便。无论是易丢失的U盘，还是因老化、接触不良而频出问题的通用串行总线，都严重制约了学生在校内文件传输的效率和便捷性。</p>
-                    <p style="color: #00ff62;">或许是由于校方的疏忽，或是受技术、经济等因素的限制，学生目录的缺失成为了亟待解决的问题。正是在这样的背景下，我们推出了“学生目录计划”。</p>
-                    <p style="color: #00ff62;">鉴于学生人数远超教师，学生目录的规划与建设自然应更加周全与出色。经过深入比较与分析，我选择了网站作为学生目录的最佳载体，相较于SMB服务，网站以其卓越的兼容性、流畅性、美观性和灵活性而备受赞誉。</p>
-                    <p style="color: #00ff62;">借助Apache技术，我在班级电脑上成功搭建了一台服务器，并将端口设置为80。因此，只需访问我所在班级的IP地址（10.88.202.54），即可轻松访问学生目录。</p>
-                    <p style="color: #00ff62;">由于该计划未获得学校的直接支持，所以每一步都充满了挑战，网站的所有代码均由我一人独立完成。我诚挚地欢迎各位提出宝贵建议，以帮助我不断完善和优化学生目录。</p>
-                    <p style="color: #00ff62;">目前，学生目录已具备文件上传、下载及教程查看等功能，更多功能正在不断完善中。敬请期待！</p>
-                    <p style="color: #00ff62;">如有任何建议或疑问，欢迎与我联系，或通过邮件classicmcnet@163.com与我取得联系。</p>
+                    <p>《学生目录计划》</p><br>
+                    <p>教师目录，一个专为教师设计的特殊文件夹，它依托SMB技术构建于校园网之上，旨在为教师群体提供高效便捷的文件传输服务。每位教师均拥有独立的账号与密码，凭借正确的登录信息，即可轻松访问个人文件及所属科目的共享资源。此外，还曾设有临时目录，供教师紧急存放文件之用（但该功能现已移除）。</p>
+                    <br>
+                    <p>然而，在这所广阔的校园里，学生群体同样需要文件存储与传输的便利。遗憾的是，学校目前并未向学生提供专门的文件传输服务，这给学生们在校内的文件管理带来了诸多不便。无论是易丢失的U盘，还是因老化、接触不良而频出问题的通用串行总线，都严重制约了学生在校内文件传输的效率和便捷性。</p>
+                    <br>
+                    <p>或许是由于校方的疏忽，或是受技术、经济等因素的限制，学生目录的缺失成为了亟待解决的问题。正是在这样的背景下，我们推出了“学生目录计划”。</p>
+                    <br>
+                    <p>鉴于学生人数远超教师，学生目录的规划与建设自然应更加周全与出色。经过深入比较与分析，我选择了网站作为学生目录的最佳载体，相较于SMB服务，网站以其卓越的兼容性、流畅性、美观性和灵活性而备受赞誉。</p>
+                    <br>
+                    <p>借助Apache技术，我在班级电脑上成功搭建了一台服务器，并将端口设置为80。因此，只需访问我所在班级的IP地址（10.88.202.71），即可轻松访问学生目录。</p>
+                    <br>
+                    <p>由于该计划未获得学校的直接支持，所以每一步都充满了挑战，网站的所有代码均由我一人独立完成。我诚挚地欢迎各位提出宝贵建议，以帮助我不断完善和优化学生目录。</p>
+                    <br>
+                    <p>目前，学生目录已具备文件上传、下载及教程查看等功能，更多功能正在不断完善中。敬请期待！</p>
+                    <br>
+                    <p>如有任何建议或疑问，欢迎与我联系，或通过邮件classicmcnet@163.com与我取得联系。</p>
                     <div style="text-align: right;">
                         <p><em>Yuebi</em></p>
                         <p><em>2024.10.31</em></p>
@@ -522,6 +555,8 @@
     .intro-section li:nth-child(1) { animation-delay: 0.8s; }
     .intro-section li:nth-child(2) { animation-delay: 1.1s; }
     .intro-section li:nth-child(3) { animation-delay: 1.4s; }
+    .intro-section li:nth-child(4) { animation-delay: 2.0s; }
+    .intro-section li:nth-child(5) { animation-delay: 2.2s; }
 
     /* 卡片悬浮特效 */
     .tutorial-card {
@@ -543,6 +578,8 @@
             rgba(0, 255, 157, 0.2),
             transparent
         );
+        background-size: 200% 200%;
+        animation: gradientFlow 15s ease infinite;
         transition: 0.6s;
     }
 
